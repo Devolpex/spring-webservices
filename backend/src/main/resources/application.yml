@@ -1,0 +1,26 @@
+spring:
+    application:
+        name: hotel-backend
+    datasource:
+        url: jdbc:mysql://localhost:3311/hotel_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+        username: user
+        password: password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: create
+        show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+
+# Logging
+logging:
+    org.springframework.web: DEBUG
+
+# Swagger
+swagger:
+    api-docs:
+        path: /v3/api-docs
+    swagger-ui:
+        path: /swagger-ui.html
