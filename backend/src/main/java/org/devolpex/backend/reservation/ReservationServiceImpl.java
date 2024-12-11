@@ -7,7 +7,6 @@ import org.devolpex.backend.chambre.ChambreRepository;
 import org.devolpex.backend.client.Client;
 import org.devolpex.backend.client.ClientRepository;
 import org.devolpex.backend.handler.OwnException;
-import org.devolpex.backend.reservation.dto.ReservationDTO;
 import org.devolpex.backend.utils.IService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
