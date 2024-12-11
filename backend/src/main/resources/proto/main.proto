@@ -1,0 +1,21 @@
+syntax = "proto3";
+package org.devolpex.backend.stubs.main;
+option java_multiple_files = true;
+
+import "client.proto";
+import "chambre.proto";
+import "reservation.proto";
+import "google/protobuf/empty.proto"; // For Empty type
+
+
+// Reservation Service
+service ReservationService {
+    rpc FetchReservationList (GetReservationsListREQ) returns (GetReservationsListRES);
+    rpc FetchReservationPage (GetReservationPageREQ) returns (GetReservationPageRES);
+    rpc FetchReservationById (GetReservationByIdREQ) returns (GetReservationByIdRES);
+    rpc CreateReservation (ReservationREQ) returns (ReservationRES);
+    rpc UpdateReservation (UpdateReservationREQ) returns (ReservationRES);
+    rpc DeleteReservation (DeleteReservationREQ) returns (google.protobuf.Empty);
+}
+
+
