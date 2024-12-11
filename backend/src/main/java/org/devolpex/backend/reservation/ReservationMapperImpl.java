@@ -23,7 +23,6 @@ public class ReservationMapperImpl implements IMapper<Reservation, ReservationDT
                 .id(entity.getChambre().getId())
                 .type(entity.getChambre().getType())
                 .prix(entity.getChambre().getPrix())
-                .disponible(entity.getChambre().getDisponible())
                 .build();
         return ReservationDTO.builder()
                 .id(entity.getId())

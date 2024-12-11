@@ -13,8 +13,7 @@ message Reservation {
     Chambre chambre = 3;
     string dateDebut = 4;
     string dateFin = 5;
-    string preferences = 6;
-    
+    string preferences = 6;    
 }
 
 // Get List of Reservations
