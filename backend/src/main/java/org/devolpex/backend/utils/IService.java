@@ -19,5 +19,4 @@ public interface IService <DTO,REQ> {
 
     Page<DTO> findAll(Pageable pageable);
 
-
 }
