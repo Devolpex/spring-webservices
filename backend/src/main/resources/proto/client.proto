@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "org.devolpex.backend.stubs.client";
+
+// Client Message
+message Client {
+    int64 id = 1;
+    string nom = 2;
+    string prenom = 3;
+    string email = 4;
+    string telephone = 5;
+}
