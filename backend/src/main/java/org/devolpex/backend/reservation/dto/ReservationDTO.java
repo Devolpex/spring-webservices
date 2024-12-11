@@ -1,9 +1,6 @@
-package org.devolpex.backend.reservation;
+package org.devolpex.backend.reservation.dto;
 
 import java.time.LocalDate;
-
-import org.devolpex.backend.chambre.ChambreDTO;
-import org.devolpex.backend.client.ClientDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

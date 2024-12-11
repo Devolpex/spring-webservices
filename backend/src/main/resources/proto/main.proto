@@ -1,0 +1,13 @@
+syntax = "proto3";
+package org.devolpex.backend.stubs.main;
+option java_multiple_files = true;
+
+import "client.proto";
+import "chambre.proto";
+import "reservation.proto";
+
+// Reservation Service
+service ReservationService {
+    rpc FetchReservationList (GetReservationsListREQ) returns (GetReservationsListRES);
+}
+
