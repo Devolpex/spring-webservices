@@ -2,9 +2,9 @@ package org.devolpex.backend.client.controllers;
 
 
 import lombok.AllArgsConstructor;
-import org.devolpex.backend.client.ClientDTO;
 import org.devolpex.backend.client.ClientREQ;
 import org.devolpex.backend.client.ClientServiceImpl;
+import org.devolpex.backend.reservation.dto.ClientDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

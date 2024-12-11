@@ -1,5 +1,6 @@
 package org.devolpex.backend.client;
 
+import org.devolpex.backend.reservation.dto.ClientDTO;
 import org.devolpex.backend.utils.IMapper;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,8 @@
 package org.devolpex.backend.client;
 
 import lombok.RequiredArgsConstructor;
+
+import org.devolpex.backend.reservation.dto.ClientDTO;
 import org.devolpex.backend.utils.IService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
