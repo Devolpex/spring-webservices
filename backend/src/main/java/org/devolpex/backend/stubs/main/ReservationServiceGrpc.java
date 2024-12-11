@@ -62,6 +62,166 @@ public final class ReservationServiceGrpc {
      return getFetchReservationListMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.GetReservationPageREQ,
+      org.devolpex.backend.stubs.reservation.GetReservationPageRES> getFetchReservationPageMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "FetchReservationPage",
+      requestType = org.devolpex.backend.stubs.reservation.GetReservationPageREQ.class,
+      responseType = org.devolpex.backend.stubs.reservation.GetReservationPageRES.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.GetReservationPageREQ,
+      org.devolpex.backend.stubs.reservation.GetReservationPageRES> getFetchReservationPageMethod() {
+    io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.GetReservationPageREQ, org.devolpex.backend.stubs.reservation.GetReservationPageRES> getFetchReservationPageMethod;
+    if ((getFetchReservationPageMethod = ReservationServiceGrpc.getFetchReservationPageMethod) == null) {
+      synchronized (ReservationServiceGrpc.class) {
+        if ((getFetchReservationPageMethod = ReservationServiceGrpc.getFetchReservationPageMethod) == null) {
+          ReservationServiceGrpc.getFetchReservationPageMethod = getFetchReservationPageMethod = 
+              io.grpc.MethodDescriptor.<org.devolpex.backend.stubs.reservation.GetReservationPageREQ, org.devolpex.backend.stubs.reservation.GetReservationPageRES>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "org.devolpex.backend.stubs.main.ReservationService", "FetchReservationPage"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.GetReservationPageREQ.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.GetReservationPageRES.getDefaultInstance()))
+                  .setSchemaDescriptor(new ReservationServiceMethodDescriptorSupplier("FetchReservationPage"))
+                  .build();
+          }
+        }
+     }
+     return getFetchReservationPageMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.GetReservationByIdREQ,
+      org.devolpex.backend.stubs.reservation.GetReservationByIdRES> getFetchReservationByIdMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "FetchReservationById",
+      requestType = org.devolpex.backend.stubs.reservation.GetReservationByIdREQ.class,
+      responseType = org.devolpex.backend.stubs.reservation.GetReservationByIdRES.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.GetReservationByIdREQ,
+      org.devolpex.backend.stubs.reservation.GetReservationByIdRES> getFetchReservationByIdMethod() {
+    io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.GetReservationByIdREQ, org.devolpex.backend.stubs.reservation.GetReservationByIdRES> getFetchReservationByIdMethod;
+    if ((getFetchReservationByIdMethod = ReservationServiceGrpc.getFetchReservationByIdMethod) == null) {
+      synchronized (ReservationServiceGrpc.class) {
+        if ((getFetchReservationByIdMethod = ReservationServiceGrpc.getFetchReservationByIdMethod) == null) {
+          ReservationServiceGrpc.getFetchReservationByIdMethod = getFetchReservationByIdMethod = 
+              io.grpc.MethodDescriptor.<org.devolpex.backend.stubs.reservation.GetReservationByIdREQ, org.devolpex.backend.stubs.reservation.GetReservationByIdRES>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "org.devolpex.backend.stubs.main.ReservationService", "FetchReservationById"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.GetReservationByIdREQ.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.GetReservationByIdRES.getDefaultInstance()))
+                  .setSchemaDescriptor(new ReservationServiceMethodDescriptorSupplier("FetchReservationById"))
+                  .build();
+          }
+        }
+     }
+     return getFetchReservationByIdMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.ReservationREQ,
+      org.devolpex.backend.stubs.reservation.ReservationRES> getCreateReservationMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CreateReservation",
+      requestType = org.devolpex.backend.stubs.reservation.ReservationREQ.class,
+      responseType = org.devolpex.backend.stubs.reservation.ReservationRES.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.ReservationREQ,
+      org.devolpex.backend.stubs.reservation.ReservationRES> getCreateReservationMethod() {
+    io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.ReservationREQ, org.devolpex.backend.stubs.reservation.ReservationRES> getCreateReservationMethod;
+    if ((getCreateReservationMethod = ReservationServiceGrpc.getCreateReservationMethod) == null) {
+      synchronized (ReservationServiceGrpc.class) {
+        if ((getCreateReservationMethod = ReservationServiceGrpc.getCreateReservationMethod) == null) {
+          ReservationServiceGrpc.getCreateReservationMethod = getCreateReservationMethod = 
+              io.grpc.MethodDescriptor.<org.devolpex.backend.stubs.reservation.ReservationREQ, org.devolpex.backend.stubs.reservation.ReservationRES>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "org.devolpex.backend.stubs.main.ReservationService", "CreateReservation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.ReservationREQ.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.ReservationRES.getDefaultInstance()))
+                  .setSchemaDescriptor(new ReservationServiceMethodDescriptorSupplier("CreateReservation"))
+                  .build();
+          }
+        }
+     }
+     return getCreateReservationMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.UpdateReservationREQ,
+      org.devolpex.backend.stubs.reservation.ReservationRES> getUpdateReservationMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateReservation",
+      requestType = org.devolpex.backend.stubs.reservation.UpdateReservationREQ.class,
+      responseType = org.devolpex.backend.stubs.reservation.ReservationRES.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.UpdateReservationREQ,
+      org.devolpex.backend.stubs.reservation.ReservationRES> getUpdateReservationMethod() {
+    io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.UpdateReservationREQ, org.devolpex.backend.stubs.reservation.ReservationRES> getUpdateReservationMethod;
+    if ((getUpdateReservationMethod = ReservationServiceGrpc.getUpdateReservationMethod) == null) {
+      synchronized (ReservationServiceGrpc.class) {
+        if ((getUpdateReservationMethod = ReservationServiceGrpc.getUpdateReservationMethod) == null) {
+          ReservationServiceGrpc.getUpdateReservationMethod = getUpdateReservationMethod = 
+              io.grpc.MethodDescriptor.<org.devolpex.backend.stubs.reservation.UpdateReservationREQ, org.devolpex.backend.stubs.reservation.ReservationRES>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "org.devolpex.backend.stubs.main.ReservationService", "UpdateReservation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.UpdateReservationREQ.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.ReservationRES.getDefaultInstance()))
+                  .setSchemaDescriptor(new ReservationServiceMethodDescriptorSupplier("UpdateReservation"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateReservationMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.DeleteReservationREQ,
+      com.google.protobuf.Empty> getDeleteReservationMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "DeleteReservation",
+      requestType = org.devolpex.backend.stubs.reservation.DeleteReservationREQ.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.DeleteReservationREQ,
+      com.google.protobuf.Empty> getDeleteReservationMethod() {
+    io.grpc.MethodDescriptor<org.devolpex.backend.stubs.reservation.DeleteReservationREQ, com.google.protobuf.Empty> getDeleteReservationMethod;
+    if ((getDeleteReservationMethod = ReservationServiceGrpc.getDeleteReservationMethod) == null) {
+      synchronized (ReservationServiceGrpc.class) {
+        if ((getDeleteReservationMethod = ReservationServiceGrpc.getDeleteReservationMethod) == null) {
+          ReservationServiceGrpc.getDeleteReservationMethod = getDeleteReservationMethod = 
+              io.grpc.MethodDescriptor.<org.devolpex.backend.stubs.reservation.DeleteReservationREQ, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "org.devolpex.backend.stubs.main.ReservationService", "DeleteReservation"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.devolpex.backend.stubs.reservation.DeleteReservationREQ.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new ReservationServiceMethodDescriptorSupplier("DeleteReservation"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteReservationMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -99,6 +259,41 @@ public final class ReservationServiceGrpc {
       asyncUnimplementedUnaryCall(getFetchReservationListMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void fetchReservationPage(org.devolpex.backend.stubs.reservation.GetReservationPageREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationPageRES> responseObserver) {
+      asyncUnimplementedUnaryCall(getFetchReservationPageMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void fetchReservationById(org.devolpex.backend.stubs.reservation.GetReservationByIdREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationByIdRES> responseObserver) {
+      asyncUnimplementedUnaryCall(getFetchReservationByIdMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void createReservation(org.devolpex.backend.stubs.reservation.ReservationREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.ReservationRES> responseObserver) {
+      asyncUnimplementedUnaryCall(getCreateReservationMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void updateReservation(org.devolpex.backend.stubs.reservation.UpdateReservationREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.ReservationRES> responseObserver) {
+      asyncUnimplementedUnaryCall(getUpdateReservationMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void deleteReservation(org.devolpex.backend.stubs.reservation.DeleteReservationREQ request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(getDeleteReservationMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -108,6 +303,41 @@ public final class ReservationServiceGrpc {
                 org.devolpex.backend.stubs.reservation.GetReservationsListREQ,
                 org.devolpex.backend.stubs.reservation.GetReservationsListRES>(
                   this, METHODID_FETCH_RESERVATION_LIST)))
+          .addMethod(
+            getFetchReservationPageMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.devolpex.backend.stubs.reservation.GetReservationPageREQ,
+                org.devolpex.backend.stubs.reservation.GetReservationPageRES>(
+                  this, METHODID_FETCH_RESERVATION_PAGE)))
+          .addMethod(
+            getFetchReservationByIdMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.devolpex.backend.stubs.reservation.GetReservationByIdREQ,
+                org.devolpex.backend.stubs.reservation.GetReservationByIdRES>(
+                  this, METHODID_FETCH_RESERVATION_BY_ID)))
+          .addMethod(
+            getCreateReservationMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.devolpex.backend.stubs.reservation.ReservationREQ,
+                org.devolpex.backend.stubs.reservation.ReservationRES>(
+                  this, METHODID_CREATE_RESERVATION)))
+          .addMethod(
+            getUpdateReservationMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.devolpex.backend.stubs.reservation.UpdateReservationREQ,
+                org.devolpex.backend.stubs.reservation.ReservationRES>(
+                  this, METHODID_UPDATE_RESERVATION)))
+          .addMethod(
+            getDeleteReservationMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.devolpex.backend.stubs.reservation.DeleteReservationREQ,
+                com.google.protobuf.Empty>(
+                  this, METHODID_DELETE_RESERVATION)))
           .build();
     }
   }
@@ -140,6 +370,46 @@ public final class ReservationServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getFetchReservationListMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void fetchReservationPage(org.devolpex.backend.stubs.reservation.GetReservationPageREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationPageRES> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getFetchReservationPageMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void fetchReservationById(org.devolpex.backend.stubs.reservation.GetReservationByIdREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationByIdRES> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getFetchReservationByIdMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void createReservation(org.devolpex.backend.stubs.reservation.ReservationREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.ReservationRES> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCreateReservationMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void updateReservation(org.devolpex.backend.stubs.reservation.UpdateReservationREQ request,
+        io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.ReservationRES> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUpdateReservationMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void deleteReservation(org.devolpex.backend.stubs.reservation.DeleteReservationREQ request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getDeleteReservationMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -168,6 +438,41 @@ public final class ReservationServiceGrpc {
     public org.devolpex.backend.stubs.reservation.GetReservationsListRES fetchReservationList(org.devolpex.backend.stubs.reservation.GetReservationsListREQ request) {
       return blockingUnaryCall(
           getChannel(), getFetchReservationListMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.devolpex.backend.stubs.reservation.GetReservationPageRES fetchReservationPage(org.devolpex.backend.stubs.reservation.GetReservationPageREQ request) {
+      return blockingUnaryCall(
+          getChannel(), getFetchReservationPageMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.devolpex.backend.stubs.reservation.GetReservationByIdRES fetchReservationById(org.devolpex.backend.stubs.reservation.GetReservationByIdREQ request) {
+      return blockingUnaryCall(
+          getChannel(), getFetchReservationByIdMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.devolpex.backend.stubs.reservation.ReservationRES createReservation(org.devolpex.backend.stubs.reservation.ReservationREQ request) {
+      return blockingUnaryCall(
+          getChannel(), getCreateReservationMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.devolpex.backend.stubs.reservation.ReservationRES updateReservation(org.devolpex.backend.stubs.reservation.UpdateReservationREQ request) {
+      return blockingUnaryCall(
+          getChannel(), getUpdateReservationMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty deleteReservation(org.devolpex.backend.stubs.reservation.DeleteReservationREQ request) {
+      return blockingUnaryCall(
+          getChannel(), getDeleteReservationMethod(), getCallOptions(), request);
     }
   }
 
@@ -199,9 +504,54 @@ public final class ReservationServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getFetchReservationListMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.devolpex.backend.stubs.reservation.GetReservationPageRES> fetchReservationPage(
+        org.devolpex.backend.stubs.reservation.GetReservationPageREQ request) {
+      return futureUnaryCall(
+          getChannel().newCall(getFetchReservationPageMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.devolpex.backend.stubs.reservation.GetReservationByIdRES> fetchReservationById(
+        org.devolpex.backend.stubs.reservation.GetReservationByIdREQ request) {
+      return futureUnaryCall(
+          getChannel().newCall(getFetchReservationByIdMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.devolpex.backend.stubs.reservation.ReservationRES> createReservation(
+        org.devolpex.backend.stubs.reservation.ReservationREQ request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCreateReservationMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.devolpex.backend.stubs.reservation.ReservationRES> updateReservation(
+        org.devolpex.backend.stubs.reservation.UpdateReservationREQ request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUpdateReservationMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteReservation(
+        org.devolpex.backend.stubs.reservation.DeleteReservationREQ request) {
+      return futureUnaryCall(
+          getChannel().newCall(getDeleteReservationMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_FETCH_RESERVATION_LIST = 0;
+  private static final int METHODID_FETCH_RESERVATION_PAGE = 1;
+  private static final int METHODID_FETCH_RESERVATION_BY_ID = 2;
+  private static final int METHODID_CREATE_RESERVATION = 3;
+  private static final int METHODID_UPDATE_RESERVATION = 4;
+  private static final int METHODID_DELETE_RESERVATION = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -223,6 +573,26 @@ public final class ReservationServiceGrpc {
         case METHODID_FETCH_RESERVATION_LIST:
           serviceImpl.fetchReservationList((org.devolpex.backend.stubs.reservation.GetReservationsListREQ) request,
               (io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationsListRES>) responseObserver);
+          break;
+        case METHODID_FETCH_RESERVATION_PAGE:
+          serviceImpl.fetchReservationPage((org.devolpex.backend.stubs.reservation.GetReservationPageREQ) request,
+              (io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationPageRES>) responseObserver);
+          break;
+        case METHODID_FETCH_RESERVATION_BY_ID:
+          serviceImpl.fetchReservationById((org.devolpex.backend.stubs.reservation.GetReservationByIdREQ) request,
+              (io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.GetReservationByIdRES>) responseObserver);
+          break;
+        case METHODID_CREATE_RESERVATION:
+          serviceImpl.createReservation((org.devolpex.backend.stubs.reservation.ReservationREQ) request,
+              (io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.ReservationRES>) responseObserver);
+          break;
+        case METHODID_UPDATE_RESERVATION:
+          serviceImpl.updateReservation((org.devolpex.backend.stubs.reservation.UpdateReservationREQ) request,
+              (io.grpc.stub.StreamObserver<org.devolpex.backend.stubs.reservation.ReservationRES>) responseObserver);
+          break;
+        case METHODID_DELETE_RESERVATION:
+          serviceImpl.deleteReservation((org.devolpex.backend.stubs.reservation.DeleteReservationREQ) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -286,6 +656,11 @@ public final class ReservationServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ReservationServiceFileDescriptorSupplier())
               .addMethod(getFetchReservationListMethod())
+              .addMethod(getFetchReservationPageMethod())
+              .addMethod(getFetchReservationByIdMethod())
+              .addMethod(getCreateReservationMethod())
+              .addMethod(getUpdateReservationMethod())
+              .addMethod(getDeleteReservationMethod())
               .build();
         }
       }
