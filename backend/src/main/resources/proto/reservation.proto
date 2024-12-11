@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "org.devolpex.backend.stubs.reservation";
+import "./client.proto";
+import "./chambre.proto";
+
+
+// Message for a Reservation
+message Reservation {
+    int64 id = 1;
+    Client client = 2;
+    Chambre chambre = 3;
+    string dateDebut = 4;
+    string dateFin = 5;
+    string preferences = 6;
+}
