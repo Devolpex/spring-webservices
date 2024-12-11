@@ -1,13 +1,12 @@
 package org.devolpex.backend.reservation;
 
 import java.time.LocalDate;
-
-import org.devolpex.backend.reservation.dto.ClientDTO;
-
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
+
+import org.devolpex.backend.client.ClientDTO;
 
 @Builder
 public record ReservationREQ(

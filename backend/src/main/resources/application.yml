@@ -28,9 +28,5 @@ swagger:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
-
-# gRPC configuration
-grpc:
-  server:
-    port: 9090
+# GraphiQL
 
