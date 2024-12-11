@@ -6,6 +6,6 @@ public interface IMapper<E, DTO, REQ> {
 
     E toEntity(REQ req);
 
-    E toEntity(E entity, REQ req);
+//    E toEntity(E entity, REQ req);
 
 }
