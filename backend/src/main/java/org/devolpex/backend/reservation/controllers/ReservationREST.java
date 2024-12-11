@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,15 +55,21 @@ public class ReservationREST {
 
     // Get a reservation by its ID
     @GetMapping("/api/reservation/{id}")
-    public ResponseEntity<ReservationDTO> getReservationById(@RequestParam Long id) {
+    public ResponseEntity<ReservationDTO> getReservationById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
     }
 
     // Delete a reservation by its ID
     @DeleteMapping("/api/reservation/{id}")
-    public ResponseEntity<Void> deleteReservationById(@RequestParam Long id) {
+    public ResponseEntity<Void> deleteReservationById(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+
+    // Update a reservation by its ID
+    @PutMapping("/api/reservation/{id}")
+    public ResponseEntity<ReservationDTO> updateReservationById(@PathVariable Long id, @RequestBody ReservationREQ req) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, req));
+    }
 }

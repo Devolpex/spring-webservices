@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
 public class DatabaseInit implements CommandLineRunner {
@@ -44,38 +47,34 @@ public class DatabaseInit implements CommandLineRunner {
 
         clientRepository.saveAll(Arrays.asList(client1, client2));
 
-        // Insert Chambres
-        Chambre chambre1 = Chambre.builder()
-                .type("Single")
-                .prix(50.0)
-                .disponible(true)
-                .build();
+        // Insert Chambres (10 Chambres)
+        List<Chambre> chambres = IntStream.range(1, 11)
+                .mapToObj(i -> Chambre.builder()
+                        .type(i % 2 == 0 ? "Double" : "Single") // Alternate between "Single" and "Double"
+                        .prix(i % 2 == 0 ? 100.0 : 50.0) // Alternate prices
+                        .disponible(true)
+                        .build())
+                .collect(Collectors.toList());
 
-        Chambre chambre2 = Chambre.builder()
-                .type("Double")
-                .prix(100.0)
-                .disponible(true)
-                .build();
+        chambreRepository.saveAll(chambres);
 
-        chambreRepository.saveAll(Arrays.asList(chambre1, chambre2));
+        // Insert Reservations (30 Reservations)
+        List<Reservation> reservations = IntStream.range(1, 31)
+                .mapToObj(i -> {
+                    Client client = i % 2 == 0 ? client2 : client1; // Alternate clients
+                    Chambre chambre = chambres.get(i % chambres.size()); // Alternate chambres
 
-        // Insert Reservations
-        Reservation reservation1 = Reservation.builder()
-                .client(client1)
-                .chambre(chambre1)
-                .dateDebut(LocalDate.of(2023, 9, 15))
-                .dateFin(LocalDate.of(2023, 9, 20))
-                .build();
+                    return Reservation.builder()
+                            .client(client)
+                            .chambre(chambre)
+                            .dateDebut(LocalDate.of(2023, 9, 10).plusDays(i)) // Create reservations with different start dates
+                            .dateFin(LocalDate.of(2023, 9, 15).plusDays(i)) // Create reservations with different end dates
+                            .build();
+                })
+                .collect(Collectors.toList());
 
-        Reservation reservation2 = Reservation.builder()
-                .client(client2)
-                .chambre(chambre2)
-                .dateDebut(LocalDate.of(2023, 9, 25))
-                .dateFin(LocalDate.of(2023, 9, 30))
-                .build();
+        reservationRepository.saveAll(reservations);
 
-        reservationRepository.saveAll(Arrays.asList(reservation1, reservation2));
-
-        System.out.println("Database initialized with test data.");
+        System.out.println("Database initialized with 10 Chambres and 30 Reservations.");
     }
 }
