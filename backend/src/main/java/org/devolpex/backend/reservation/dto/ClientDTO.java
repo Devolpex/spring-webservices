@@ -1,4 +1,4 @@
-package org.devolpex.backend.client;
+package org.devolpex.backend.reservation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

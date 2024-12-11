@@ -69,6 +69,7 @@ public class DatabaseInit implements CommandLineRunner {
                             .chambre(chambre)
                             .dateDebut(LocalDate.of(2023, 9, 10).plusDays(i)) // Create reservations with different start dates
                             .dateFin(LocalDate.of(2023, 9, 15).plusDays(i)) // Create reservations with different end dates
+                            
                             .build();
                 })
                 .collect(Collectors.toList());
