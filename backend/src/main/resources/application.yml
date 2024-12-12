@@ -20,7 +20,7 @@ server:
   port: 8082
 # Logging
 logging:
-  org.springframework.web: DEBUG
+  org.springframework.web: TRACE
 
 # Swagger
 swagger:

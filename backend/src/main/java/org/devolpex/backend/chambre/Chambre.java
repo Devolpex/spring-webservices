@@ -37,6 +37,6 @@ public class Chambre {
     @Column(nullable = false)
     private Boolean disponible; // Statut de disponibilité
 
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(mappedBy = "chambre")
     private List<Reservation> reservations;
 }

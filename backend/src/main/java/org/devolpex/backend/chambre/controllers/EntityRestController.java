@@ -2,13 +2,13 @@ package org.devolpex.backend.chambre.controllers;
 
 import java.util.List;
 
-import org.devolpex.backend.chambre.Chambre;
-import org.devolpex.backend.chambre.dto.*;
-import org.devolpex.backend.chambre.ChambreRepository;
 import org.devolpex.backend.chambre.ChambreServiceImpl;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.devolpex.backend.chambre.dto.ChambreDto;
+import org.devolpex.backend.chambre.dto.ChambreReq;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,17 +17,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import com.google.api.Http;
-import com.google.rpc.context.AttributeContext;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
 
+
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping("/api")
 @RequiredArgsConstructor
-class EntityRestController {
+public class EntityRestController {
 
     private final ChambreServiceImpl chambreService;
 
@@ -56,5 +57,15 @@ class EntityRestController {
         return  ResponseEntity.status(HttpStatus.OK).body(chambreService.update(id, chambre));
     }
 
+    @GetMapping("/chambres/page")
+    public ResponseEntity<Page<ChambreDto>> findAllChambrePage(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "desc") String orderBy) {
+        Pageable pageable = PageRequest.of(page - 1, size, Direction.valueOf(orderBy.toUpperCase()), sortBy);
+        Page<ChambreDto> chambres = chambreService.findAll(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(chambres);
+    }
     
 }
