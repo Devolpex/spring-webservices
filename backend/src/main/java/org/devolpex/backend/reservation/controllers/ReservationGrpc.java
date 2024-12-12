@@ -27,17 +27,15 @@ import org.springframework.data.domain.Sort;
 import com.google.protobuf.Empty;
 
 import io.grpc.stub.StreamObserver;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 
 @GrpcService
-@RequiredArgsConstructor
 @Slf4j
 public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceImplBase {
 
-    private final ReservationServiceImpl service;
-    private final ReservationGrpcMapper grpcMapper;
+    private ReservationServiceImpl service;
+    private ReservationGrpcMapper grpcMapper;
 
     @Override
     public void fetchReservationList(GetReservationsListREQ req,
@@ -52,7 +50,7 @@ public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceIm
                     .build());
             res.onCompleted();
         } catch (Exception e) {
-            log.error("Error fetching reservations", e);
+            // log.error("Error fetching reservations", e);
             res.onError(e);
         }
     }
@@ -83,7 +81,7 @@ public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceIm
                     .build());
             res.onCompleted();
         } catch (Exception e) {
-            log.error("Error fetching reservation page", e);
+            // log.error("Error fetching reservation page", e);
             res.onError(e);
         }
     }
@@ -101,7 +99,7 @@ public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceIm
                     .build());
             res.onCompleted();
         } catch (Exception e) {
-            log.error("Error fetching reservation by ID", e);
+            // log.error("Error fetching reservation by ID", e);
             res.onError(e);
         }
     }
@@ -120,7 +118,7 @@ public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceIm
                     .build());
             res.onCompleted();
         } catch (Exception e) {
-            log.error("Error creating reservation", e);
+            // log.error("Error creating reservation", e);
             res.onError(e);
         }
     }
@@ -140,7 +138,7 @@ public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceIm
                     .build());
             res.onCompleted();
         } catch (Exception e) {
-            log.error("Error updating reservation", e);
+            // log.error("Error updating reservation", e);
             res.onError(e);
         }
 
@@ -158,7 +156,7 @@ public class ReservationGrpc extends ReservationServiceGrpc.ReservationServiceIm
             res.onNext(Empty.newBuilder().build());
             res.onCompleted();
         } catch (Exception e) {
-            log.error("Error deleting reservation", e);
+            // log.error("Error deleting reservation", e);
             res.onError(e);
         }
     }

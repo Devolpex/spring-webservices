@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReservationREST {
 
-    private final ReservationServiceImpl service;
+    private ReservationServiceImpl service;
 
     // Create a new reservation
     @PostMapping("/api/reservation")
