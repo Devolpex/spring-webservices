@@ -57,6 +57,6 @@ public class ClientServiceImpl implements IService<ClientDTO, ClientREQ> {
 
     @Override
     public Page<ClientDTO> findAll(Pageable pageable) {
-        return null;
+        return clientRepository.findAll(pageable).map(clientMapper::toDTO);
     }
 }
