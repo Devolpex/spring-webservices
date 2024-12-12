@@ -21,7 +21,10 @@ public class ClientMapperImpl implements IMapper<Client, ClientDTO, ClientREQ> {
                 .prenom(entity.getPrenom())
                 .email(entity.getEmail())
                 .telephone(entity.getTelephone())
-                .reservations(entity.getReservations().stream().map(this::mapToReservationDTO).toList())
+                // reservaiton is empty
+                .reservations(entity.getReservations() == null
+                        ? null
+                        : entity.getReservations().stream().map(this::mapToReservationDTO).toList())
                 .build();
     }
 

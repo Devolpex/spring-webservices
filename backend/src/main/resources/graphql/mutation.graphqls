@@ -1,0 +1,11 @@
+type Mutation {
+  # Client Queries
+  createClient(input: ClientREQ!): Client
+  updateClient(id: ID!, input: ClientREQ!): Client
+  deleteClient(id: ID!): Boolean
+
+  # Reservation Queries
+  createReservation(input: ReservationREQ): Reservation
+  updateReservation(id: ID!, input: ReservationREQ): Reservation
+  deleteReservation(id: ID!): Boolean
+}

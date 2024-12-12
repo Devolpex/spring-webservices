@@ -1,40 +1,11 @@
-# Query
-type Query {
-    fetchListClients: [Client]
-    fetchClientById(id: Long!): Client
-    fetchPageClients(page: Int, size: Int, sortBy: String, orderBy: String): [ClientPage]
-}
-
-# Mutation
-type Mutation {
-    createClient(input: ClientInput!): Client
-    updateClient(id: Long!, input: ClientInput!): Client
-    deleteClient(id: Long!): Boolean
-}
-
 # Types
 type Client {
-    id: Long
+    id: ID
     nom: String
     prenom: String
     email: String
     telephone: String
     reservations: [Reservation]
-}
-
-type Reservation {
-    id: Long
-    chambre: Chambre
-    dateDebut: String
-    dateFin: String
-    preferences: String
-}
-
-type Chambre {
-    id: Long
-    type: String
-    prix: Float
-    disponible: Boolean
 }
 
 # Client Request (Input in Mutation)
@@ -59,17 +30,4 @@ type ClientPage {
   empty: Boolean
 }
 
-type Pageable {
-    pageNumber: Int
-    pageSize: Int
-    offset: Int
-    paged: Boolean
-    unpaged: Boolean
-    sort: Sort
-}
 
-type Sort {
-    sorted: Boolean
-    unsorted: Boolean
-    empty: Boolean
-}
