@@ -1,7 +1,8 @@
 package org.devolpex.backend.reservation;
 
-import org.devolpex.backend.chambre.ChambreDTO;
-import org.devolpex.backend.client.ClientDTO;
+import org.devolpex.backend.reservation.dto.ChambreDTO;
+import org.devolpex.backend.reservation.dto.ClientDTO;
+import org.devolpex.backend.reservation.dto.ReservationDTO;
 import org.devolpex.backend.utils.IMapper;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +46,7 @@ public class ReservationMapperImpl implements IMapper<Reservation, ReservationDT
         // .build();
     }
 
-    @Override
+
     public Reservation toEntity(Reservation entity, ReservationREQ req) {
         return null;
         // entity.setClient(req.getClient());

@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Stubs 
+**/src/main/resources/stubs/

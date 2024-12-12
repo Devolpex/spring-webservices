@@ -1,8 +1,9 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.devolpex.backend.stubs.reservation";
-import "./client.proto";
-import "./chambre.proto";
+import "client.proto";
+import "chambre.proto";
+import "google/protobuf/timestamp.proto";
 
 
 // Message for a Reservation
@@ -12,5 +13,88 @@ message Reservation {
     Chambre chambre = 3;
     string dateDebut = 4;
     string dateFin = 5;
-    string preferences = 6;
+    string preferences = 6;    
+}
+
+// Get List of Reservations
+message GetReservationsListREQ {
+}
+message GetReservationsListRES {
+    repeated Reservation reservations = 1;
+}
+
+// Get page of reservations
+message GetReservationPageREQ{
+    int32 page = 1;
+    int32 size = 2;
+    string orderBy = 3;
+    string sortBy = 4;
+}
+message GetReservationPageRES{
+    ReservationPage reservationPage = 1;
+}
+
+// Get Reservation by ID
+message GetReservationByIdREQ {
+    int64 id = 1;
+}
+message GetReservationByIdRES {
+    Reservation reservation = 1;
+}
+
+// Create Reservation 
+message ReservationREQ {
+    Client client = 1;  // The client information
+    int64 chambreId = 2;   // The chambre ID
+    google.protobuf.Timestamp dateDebut = 3; // The start date (must be in the future)
+    google.protobuf.Timestamp dateFin = 4;   // The end date (must be in the future)
+    string preferences = 5;  // Preferences, up to 255 characters
+}
+message ReservationRES {
+    Reservation reservation = 1;
+}
+
+// Update Reservation
+message UpdateReservationREQ {
+    int64 id = 1;
+    ReservationREQ reservation = 2;
+}
+
+// Delete Reservation
+message DeleteReservationREQ {
+    int64 id = 1;
+}
+
+
+
+
+// Pageable message definition
+message Pageable {
+    int32 pageNumber = 1;
+    int32 pageSize = 2;
+    int64 offset = 3;
+    bool paged = 4;
+    bool unpaged = 5;
+    Sort sort = 6;
+}
+
+// Sort message definition
+message Sort {
+    bool sorted = 1;
+    bool unsorted = 2;
+    bool empty = 3;
+}
+
+// ReservationPage message definition
+message ReservationPage {
+    repeated Reservation content = 1; 
+    Pageable pageable = 2;           
+    int64 totalElements = 3;         
+    int32 totalPages = 4;            
+    bool last = 5;                  
+    bool first = 6;                  
+    int32 size = 7;                  
+    int32 number = 8;                
+    int32 numberOfElements = 9;      
+    bool empty = 10;                 
 }

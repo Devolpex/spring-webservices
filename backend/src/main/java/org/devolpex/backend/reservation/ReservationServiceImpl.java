@@ -7,24 +7,23 @@ import org.devolpex.backend.chambre.ChambreRepository;
 import org.devolpex.backend.client.Client;
 import org.devolpex.backend.client.ClientRepository;
 import org.devolpex.backend.handler.OwnException;
+import org.devolpex.backend.reservation.dto.ReservationDTO;
 import org.devolpex.backend.utils.IService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class ReservationServiceImpl implements IService<ReservationDTO, ReservationREQ> {
 
-    private final ReservationRepository reservationRepository;
-    private final ReservationMapperImpl reservationMapper;
-    private final ChambreRepository chambreRepository;
-    private final ClientRepository clientRepository;
+    private ReservationRepository reservationRepository;
+    private ReservationMapperImpl reservationMapper;
+    private ChambreRepository chambreRepository;
+    private ClientRepository clientRepository;
 
     @Override
     public ReservationDTO create(ReservationREQ req) {
@@ -42,13 +41,13 @@ public class ReservationServiceImpl implements IService<ReservationDTO, Reservat
                 req.chambreId(), req.dateDebut(), req.dateFin());
 
         if (!existingReservations.isEmpty()) {
-            log.error("La chambre est déjà réservée dans cette plage de dates.");
+            // log.error("La chambre est déjà réservée dans cette plage de dates.");
             throw new OwnException("La chambre est déjà réservée dans cette plage de dates.", HttpStatus.CONFLICT);
         }
 
         Chambre chambre = chambreRepository.findById(req.chambreId())
                 .orElseThrow(() -> {
-                    log.error("Chambre non trouvée.");
+                    // log.error("Chambre non trouvée.");
                     return new OwnException("Chambre non trouvée.", HttpStatus.NOT_FOUND);
                 });
 
@@ -73,7 +72,7 @@ public class ReservationServiceImpl implements IService<ReservationDTO, Reservat
         // Find the reservation
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(() -> {
-                    log.error("Réservation non trouvée.");
+                    // log.error("Réservation non trouvée.");
                     return new OwnException("Réservation non trouvée.", HttpStatus.NOT_FOUND);
                 });
         // Check if the client exists, otherwise create it
@@ -88,14 +87,14 @@ public class ReservationServiceImpl implements IService<ReservationDTO, Reservat
         List<Reservation> existingReservations = reservationRepository.findReservationsByChambreAndDateRange(
                 req.chambreId(), req.dateDebut(), req.dateFin());
         if (!existingReservations.isEmpty()) {
-            log.error("La chambre est déjà réservée dans cette plage de dates.");
+            // log.error("La chambre est déjà réservée dans cette plage de dates.");
             throw new OwnException("La chambre est déjà réservée dans cette plage de dates.", HttpStatus.CONFLICT);
         }
 
         // Update the reservation object and save it
         Chambre chambre = chambreRepository.findById(req.chambreId())
                 .orElseThrow(() -> {
-                    log.error("Chambre non trouvée.");
+                    // log.error("Chambre non trouvée.");
                     return new OwnException("Chambre non trouvée.", HttpStatus.NOT_FOUND);
                 });
 
@@ -114,7 +113,7 @@ public class ReservationServiceImpl implements IService<ReservationDTO, Reservat
     public void delete(Long id) {
         reservationRepository.findById(id)
                 .ifPresentOrElse(reservationRepository::delete, () -> {
-                    log.error("Réservation non trouvée.");
+                    // log.error("Réservation non trouvée.");
                     throw new OwnException("Réservation non trouvée.", HttpStatus.NOT_FOUND);
                 });
     }
@@ -124,7 +123,7 @@ public class ReservationServiceImpl implements IService<ReservationDTO, Reservat
         return reservationRepository.findById(id)
                 .map(reservationMapper::toDTO)
                 .orElseThrow(() -> {
-                    log.error("Réservation non trouvée.");
+                    // log.error("Réservation non trouvée.");
                     return new OwnException("Réservation non trouvée.", HttpStatus.NOT_FOUND);
                 });
     }

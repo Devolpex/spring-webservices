@@ -2,9 +2,9 @@ package org.devolpex.backend.reservation.controllers;
 
 import java.util.List;
 
-import org.devolpex.backend.reservation.ReservationDTO;
 import org.devolpex.backend.reservation.ReservationREQ;
 import org.devolpex.backend.reservation.ReservationServiceImpl;
+import org.devolpex.backend.reservation.dto.ReservationDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReservationREST {
 
-    private final ReservationServiceImpl service;
+    private ReservationServiceImpl service;
 
     // Create a new reservation
     @PostMapping("/api/reservation")
