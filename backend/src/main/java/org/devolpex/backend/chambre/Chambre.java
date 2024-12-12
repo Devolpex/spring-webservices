@@ -1,10 +1,15 @@
 package org.devolpex.backend.chambre;
 
+import java.util.List;
+
+import org.devolpex.backend.reservation.Reservation;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "chambres")
+@Table(name = "chambre")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -31,4 +36,7 @@ public class Chambre {
 
     @Column(nullable = false)
     private Boolean disponible; // Statut de disponibilité
+
+    @OneToMany(mappedBy = "chambre")
+    private List<Reservation> reservations;
 }
