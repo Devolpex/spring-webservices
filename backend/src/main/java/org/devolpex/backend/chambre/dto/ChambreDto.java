@@ -2,7 +2,7 @@ package org.devolpex.backend.chambre.dto;
 
 import java.util.List;
 
-import org.devolpex.backend.reservation.ReservationDTO;
+import org.devolpex.backend.chambre.dto.ReservationDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChambreDTO {
+public class ChambreDto {
     private Long id;
     private String type;
     private Double prix;

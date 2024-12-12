@@ -32,17 +32,17 @@ class EntityRestController {
     private final ChambreServiceImpl chambreService;
 
     @PostMapping("/chambre")
-    public ResponseEntity<ChambreDTO> createChambre(@RequestBody ChambreReq chambre) {
+    public ResponseEntity<ChambreDto> createChambre(@RequestBody ChambreReq chambre) {
         return ResponseEntity.status(HttpStatus.CREATED).body(chambreService.create(chambre));
     }
 
     @GetMapping("/chambre/{id}")
-    public ResponseEntity<ChambreDTO> findChambreById(@PathVariable Long id) {
+    public ResponseEntity<ChambreDto> findChambreById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(chambreService.findById(id));
     }
     
     @GetMapping("/chambres")
-    public ResponseEntity<List<ChambreDTO>> findAllChambres() {
+    public ResponseEntity<List<ChambreDto>> findAllChambres() {
         return ResponseEntity.status(HttpStatus.OK).body(chambreService.findAll());
     }
 
@@ -52,8 +52,9 @@ class EntityRestController {
     }
 
     @PutMapping("/chambre/{id}")
-    public ResponseEntity<ChambreDTO> updateChambre(@PathVariable Long id, @RequestBody ChambreReq chambre) {
+    public ResponseEntity<ChambreDto> updateChambre(@PathVariable Long id, @RequestBody ChambreReq chambre) {
         return  ResponseEntity.status(HttpStatus.OK).body(chambreService.update(id, chambre));
     }
 
+    
 }
