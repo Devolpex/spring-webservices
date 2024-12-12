@@ -4,7 +4,7 @@ package org.devolpex.backend.client.controllers;
 import lombok.AllArgsConstructor;
 import org.devolpex.backend.client.ClientREQ;
 import org.devolpex.backend.client.ClientServiceImpl;
-import org.devolpex.backend.reservation.dto.ClientDTO;
+import org.devolpex.backend.client.dto.ClientDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/clients")
-public class ClientRest {
+public class ClientREST {
 
     private final ClientServiceImpl clientService;
 

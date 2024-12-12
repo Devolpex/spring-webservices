@@ -1,10 +1,15 @@
 package org.devolpex.backend.client;
 
+import java.util.List;
+
+import org.devolpex.backend.reservation.Reservation;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,4 +37,7 @@ public class Client {
 
     @Column(nullable = false, unique = true)
     private String telephone;
+
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations;
 }
