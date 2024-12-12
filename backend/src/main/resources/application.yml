@@ -18,6 +18,9 @@ spring:
     enabled: true
 server:
   port: 8082
+grpc:
+  server:
+    port: 9099
 # Logging
 logging:
   org.springframework.web: DEBUG
@@ -29,4 +32,25 @@ swagger:
   swagger-ui:
     path: /swagger-ui.html
 # GraphiQL
+# Spring Boot Actuator (for Prometheus, Loki, Grafana integration)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus  # Exposes relevant endpoints for Prometheus/Grafana
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true  # Enables histogram for HTTP request metrics
+  observations:
+    key-values:
+      application: hotel-backend  # Can be customized with your application name
+  tracing:
+    sampling:
+      probability: 1.0  # Enables tracing for all requests
+  # Prometheus scraping
+# This configuration allows Prometheus to scrape metrics from the `/actuator/prometheus` endpoint
+
+  prometheus:
+    enabled: true  # Ensure that Prometheus metrics are enabled
 
