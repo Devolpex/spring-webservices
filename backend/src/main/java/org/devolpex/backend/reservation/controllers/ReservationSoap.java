@@ -5,21 +5,21 @@ import java.util.List;
 import org.devolpex.backend.reservation.ReservationREQ;
 import org.devolpex.backend.reservation.ReservationServiceImpl;
 import org.devolpex.backend.reservation.dto.ReservationDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-
+import lombok.RequiredArgsConstructor;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
+import jakarta.validation.Valid;
 
 @Component
 @WebService(serviceName = "ReservationService")
+@RequiredArgsConstructor
 public class ReservationSoap {
 
     private ReservationServiceImpl service;
@@ -35,12 +35,12 @@ public class ReservationSoap {
     }
 
     @WebMethod
-    public ReservationDTO createReservation(ReservationREQ reservation) {
+    public ReservationDTO createReservation(@Valid ReservationREQ reservation) {
         return service.create(reservation);
     }
 
     @WebMethod
-    public ReservationDTO updateReservation(@WebParam(name="id") Long id, ReservationREQ reservation) {
+    public ReservationDTO updateReservation(@WebParam(name="id") Long id,@Valid ReservationREQ reservation) {
         return service.update(id, reservation);
     }
 

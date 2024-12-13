@@ -19,17 +19,19 @@ public class ChambreMapperImpl implements IMapper<Chambre, ChambreDto, ChambreRe
 
     @Override
     public Chambre toEntity(ChambreReq req) {
-        return Chambre.builder()
-                .type(req.getType())
-                .prix(req.getPrix())
-                .disponible(req.getDisponible())
-                .build();
+        return null;
+        // return Chambre.builder()
+        //         .type(req.type())
+        //         .prix(req.getPrix())
+        //         .disponible(req.getDisponible())
+        //         .build();
     }
 
     public Chambre toEntity(Chambre entity, ChambreReq req) {
-        entity.setType(req.getType());
-        entity.setPrix(req.getPrix());
-        entity.setDisponible(req.getDisponible());
-        return entity;
+        // entity.setType(req.getType());
+        // entity.setPrix(req.getPrix());
+        // entity.setDisponible(req.getDisponible());
+        // return entity;
+        return null;
     }
 }

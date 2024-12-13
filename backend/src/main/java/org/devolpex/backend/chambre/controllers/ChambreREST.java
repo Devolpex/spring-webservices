@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class EntityRestController {
+public class ChambreREST {
 
     private final ChambreServiceImpl chambreService;
 

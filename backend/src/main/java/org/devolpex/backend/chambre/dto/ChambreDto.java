@@ -2,8 +2,6 @@ package org.devolpex.backend.chambre.dto;
 
 import java.util.List;
 
-import org.devolpex.backend.chambre.dto.ReservationDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ChambreDto {
     private Long id;
     private String type;
