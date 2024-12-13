@@ -3,6 +3,7 @@ package org.devolpex.backend.client;
 import org.devolpex.backend.client.dto.ChambreDTO;
 import org.devolpex.backend.client.dto.ClientDTO;
 import org.devolpex.backend.client.dto.ReservationDTO;
+import org.devolpex.backend.client.http.ClientXMLREQ;
 import org.devolpex.backend.reservation.Reservation;
 import org.devolpex.backend.utils.IMapper;
 import org.springframework.stereotype.Component;
@@ -53,13 +54,18 @@ public class ClientMapperImpl implements IMapper<Client, ClientDTO, ClientREQ> {
                 .chambre(chambre)
                 .build();
     }
-    // @Override
-    // public Client toEntity(Client entity, ClientREQ req) {
-    // entity.setNom(req.getNom());
-    // entity.setPrenom(req.getPrenom());
-    // entity.setEmail(req.getEmail());
-    // entity.setTelephone(req.getTelephone());
-    // return entity;
-    // }
+
+    /**
+     * Method to transform form XML request to default request object (record)
+     */
+
+    public ClientREQ toRequest(ClientXMLREQ xml) {
+        return ClientREQ.builder()
+                .nom(xml.getNom())
+                .prenom(xml.getPrenom())
+                .email(xml.getEmail())
+                .telephone(xml.getTelephone())
+                .build();
+    }
 
 }

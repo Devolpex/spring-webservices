@@ -11,6 +11,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +25,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Client {
 
     @Id
@@ -40,5 +46,6 @@ public class Client {
     private String telephone;
 
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
+    @XmlTransient
     private List<Reservation> reservations;
 }

@@ -1,13 +1,10 @@
-package org.devolpex.backend.client.dto;
+package org.devolpex.backend.client.http;
 
-import java.util.List;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,16 +16,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ClientDTO {
-
-    private Long id;
+public class ClientXMLREQ {
+    @NotNull(message = "Le nom ne peut pas être nul")
     private String nom;
+    @NotNull(message = "Le prénom ne peut pas être nul")
     private String prenom;
+    @NotNull(message = "L'email ne peut pas être nul")
+    @Email(message = "L'email doit être valide")
     private String email;
+    @NotNull(message = "Le téléphone ne peut pas être nul")
     private String telephone;
-
-    @XmlElementWrapper(name = "reservations")
-    @XmlElement(name = "reservation")
-    private List<ReservationDTO> reservations;
-
 }
