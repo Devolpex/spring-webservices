@@ -2,7 +2,7 @@ package org.devolpex.backend.client;
 
 import lombok.RequiredArgsConstructor;
 
-import org.devolpex.backend.reservation.dto.ClientDTO;
+import org.devolpex.backend.client.dto.ClientDTO;
 import org.devolpex.backend.utils.IService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +26,7 @@ public class ClientServiceImpl implements IService<ClientDTO, ClientREQ> {
         clientRepository.findByEmail(client.getEmail()).ifPresent(c -> {
             throw new RuntimeException("Client already exists");
         });
-        client = clientRepository.save(client);  // Save the client if it doesn't exist
+        client = clientRepository.save(client); 
         return clientMapper.toDTO(client);
     }
 
@@ -57,6 +57,6 @@ public class ClientServiceImpl implements IService<ClientDTO, ClientREQ> {
 
     @Override
     public Page<ClientDTO> findAll(Pageable pageable) {
-        return null;
+        return clientRepository.findAll(pageable).map(clientMapper::toDTO);
     }
 }
