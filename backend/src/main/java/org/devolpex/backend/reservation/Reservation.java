@@ -25,8 +25,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+// @XmlRootElement
+// @XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation {
 
     @Id

@@ -23,7 +23,7 @@ grpc:
     port: 9099
 # Logging
 logging:
-  org.springframework.web: DEBUG
+  org.springframework.web: TRACE
 
 # Swagger
 swagger:

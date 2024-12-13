@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReservationServiceImpl implements IService<ReservationDTO, ReservationREQ> {
 
     private final ReservationRepository reservationRepository;

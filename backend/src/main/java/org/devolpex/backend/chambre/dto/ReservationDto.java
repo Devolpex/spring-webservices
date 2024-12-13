@@ -1,24 +1,18 @@
-package org.devolpex.backend.reservation.dto;
+package org.devolpex.backend.chambre.dto;
 
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
-// @XmlRootElement
-// @XmlAccessorType(XmlAccessType.FIELD)
-public class ReservationDTO {
-
+public class ReservationDto {
     private Long id;
-    private ClientDTO client;
-    private ChambreDTO chambre;
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String preferences;
+
 }
