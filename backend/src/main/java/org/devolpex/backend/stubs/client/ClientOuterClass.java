@@ -19,6 +19,76 @@ public final class ClientOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Client_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ClientPRT_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ClientPRT_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ReservationPRT_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ReservationPRT_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ChambrePRT_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ChambrePRT_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ClientRequestPRT_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ClientRequestPRT_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ClientPagePRT_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ClientPagePRT_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FetchListClientsREQ_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FetchListClientsREQ_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FetchListClientsRES_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FetchListClientsRES_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FetchClientByIdREQ_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FetchClientByIdREQ_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FetchClientByIdRES_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FetchClientByIdRES_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FetchPageClientsREQ_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FetchPageClientsREQ_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FetchPageClientsRES_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FetchPageClientsRES_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CreateClientREQ_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CreateClientREQ_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UpdateClientREQ_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UpdateClientREQ_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DeleteClientREQ_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_DeleteClientREQ_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -28,14 +98,53 @@ public final class ClientOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014client.proto\"S\n\006Client\022\n\n\002id\030\001 \001(\003\022\013\n\003" +
-      "nom\030\002 \001(\t\022\016\n\006prenom\030\003 \001(\t\022\r\n\005email\030\004 \001(\t" +
-      "\022\021\n\ttelephone\030\005 \001(\tB%\n!org.devolpex.back" +
-      "end.stubs.clientP\001b\006proto3"
+      "\n\014client.proto\032\014shared.proto\032\033google/pro" +
+      "tobuf/empty.proto\"S\n\006Client\022\n\n\002id\030\001 \001(\003\022" +
+      "\013\n\003nom\030\002 \001(\t\022\016\n\006prenom\030\003 \001(\t\022\r\n\005email\030\004 " +
+      "\001(\t\022\021\n\ttelephone\030\005 \001(\t\"}\n\tClientPRT\022\n\n\002i" +
+      "d\030\001 \001(\003\022\013\n\003nom\030\002 \001(\t\022\016\n\006prenom\030\003 \001(\t\022\r\n\005" +
+      "email\030\004 \001(\t\022\021\n\ttelephone\030\005 \001(\t\022%\n\014reserv" +
+      "ations\030\006 \003(\0132\017.ReservationPRT\"s\n\016Reserva" +
+      "tionPRT\022\n\n\002id\030\001 \001(\003\022\021\n\tdateDebut\030\002 \001(\t\022\017" +
+      "\n\007dateFin\030\003 \001(\t\022\023\n\013preferences\030\004 \001(\t\022\034\n\007" +
+      "chambre\030\006 \001(\0132\013.ChambrePRT\"H\n\nChambrePRT" +
+      "\022\n\n\002id\030\001 \001(\003\022\014\n\004type\030\002 \001(\t\022\014\n\004prix\030\003 \001(\002" +
+      "\022\022\n\ndisponible\030\004 \001(\010\"Q\n\020ClientRequestPRT" +
+      "\022\013\n\003nom\030\001 \001(\t\022\016\n\006prenom\030\002 \001(\t\022\r\n\005email\030\003" +
+      " \001(\t\022\021\n\ttelephone\030\004 \001(\t\"\333\001\n\rClientPagePR" +
+      "T\022\033\n\007content\030\001 \003(\0132\n.ClientPRT\022\036\n\010pageab" +
+      "le\030\002 \001(\0132\014.PageablePRT\022\025\n\rtotalElements\030" +
+      "\003 \001(\003\022\022\n\ntotalPages\030\004 \001(\005\022\014\n\004last\030\005 \001(\010\022" +
+      "\r\n\005first\030\006 \001(\010\022\014\n\004size\030\007 \001(\005\022\016\n\006number\030\010" +
+      " \001(\005\022\030\n\020numberOfElements\030\t \001(\005\022\r\n\005empty\030" +
+      "\n \001(\010\"\025\n\023FetchListClientsREQ\"2\n\023FetchLis" +
+      "tClientsRES\022\033\n\007clients\030\001 \003(\0132\n.ClientPRT" +
+      "\" \n\022FetchClientByIdREQ\022\n\n\002id\030\001 \001(\003\"0\n\022Fe" +
+      "tchClientByIdRES\022\032\n\006client\030\001 \001(\0132\n.Clien" +
+      "tPRT\"R\n\023FetchPageClientsREQ\022\014\n\004page\030\001 \001(" +
+      "\005\022\014\n\004size\030\002 \001(\005\022\017\n\007orderBy\030\003 \001(\t\022\016\n\006sort" +
+      "By\030\004 \001(\t\"3\n\023FetchPageClientsRES\022\034\n\004data\030" +
+      "\001 \001(\0132\016.ClientPagePRT\"4\n\017CreateClientREQ" +
+      "\022!\n\006client\030\001 \001(\0132\021.ClientRequestPRT\"@\n\017U" +
+      "pdateClientREQ\022\n\n\002id\030\001 \001(\003\022!\n\006client\030\002 \001" +
+      "(\0132\021.ClientRequestPRT\"\035\n\017DeleteClientREQ" +
+      "\022\n\n\002id\030\001 \001(\0032\356\002\n\rClientService\022@\n\020FetchL" +
+      "istClients\022\024.FetchListClientsREQ\032\024.Fetch" +
+      "ListClientsRES\"\000\022=\n\017FetchClientById\022\023.Fe" +
+      "tchClientByIdREQ\032\023.FetchClientByIdRES\"\000\022" +
+      "@\n\020FetchPageClients\022\024.FetchPageClientsRE" +
+      "Q\032\024.FetchPageClientsRES\"\000\022.\n\014CreateClien" +
+      "t\022\020.CreateClientREQ\032\n.ClientPRT\"\000\022.\n\014Upd" +
+      "ateClient\022\020.UpdateClientREQ\032\n.ClientPRT\"" +
+      "\000\022:\n\014DeleteClient\022\020.DeleteClientREQ\032\026.go" +
+      "ogle.protobuf.Empty\"\000B%\n!org.devolpex.ba" +
+      "ckend.stubs.clientP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          org.devolpex.backend.stubs.shared.Shared.getDescriptor(),
+          com.google.protobuf.EmptyProto.getDescriptor(),
         });
     internal_static_Client_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -43,6 +152,92 @@ public final class ClientOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Client_descriptor,
         new java.lang.String[] { "Id", "Nom", "Prenom", "Email", "Telephone", });
+    internal_static_ClientPRT_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_ClientPRT_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ClientPRT_descriptor,
+        new java.lang.String[] { "Id", "Nom", "Prenom", "Email", "Telephone", "Reservations", });
+    internal_static_ReservationPRT_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_ReservationPRT_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ReservationPRT_descriptor,
+        new java.lang.String[] { "Id", "DateDebut", "DateFin", "Preferences", "Chambre", });
+    internal_static_ChambrePRT_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_ChambrePRT_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ChambrePRT_descriptor,
+        new java.lang.String[] { "Id", "Type", "Prix", "Disponible", });
+    internal_static_ClientRequestPRT_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_ClientRequestPRT_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ClientRequestPRT_descriptor,
+        new java.lang.String[] { "Nom", "Prenom", "Email", "Telephone", });
+    internal_static_ClientPagePRT_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_ClientPagePRT_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ClientPagePRT_descriptor,
+        new java.lang.String[] { "Content", "Pageable", "TotalElements", "TotalPages", "Last", "First", "Size", "Number", "NumberOfElements", "Empty", });
+    internal_static_FetchListClientsREQ_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_FetchListClientsREQ_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FetchListClientsREQ_descriptor,
+        new java.lang.String[] { });
+    internal_static_FetchListClientsRES_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_FetchListClientsRES_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FetchListClientsRES_descriptor,
+        new java.lang.String[] { "Clients", });
+    internal_static_FetchClientByIdREQ_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_FetchClientByIdREQ_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FetchClientByIdREQ_descriptor,
+        new java.lang.String[] { "Id", });
+    internal_static_FetchClientByIdRES_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_FetchClientByIdRES_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FetchClientByIdRES_descriptor,
+        new java.lang.String[] { "Client", });
+    internal_static_FetchPageClientsREQ_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_FetchPageClientsREQ_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FetchPageClientsREQ_descriptor,
+        new java.lang.String[] { "Page", "Size", "OrderBy", "SortBy", });
+    internal_static_FetchPageClientsRES_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_FetchPageClientsRES_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FetchPageClientsRES_descriptor,
+        new java.lang.String[] { "Data", });
+    internal_static_CreateClientREQ_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_CreateClientREQ_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CreateClientREQ_descriptor,
+        new java.lang.String[] { "Client", });
+    internal_static_UpdateClientREQ_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_UpdateClientREQ_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateClientREQ_descriptor,
+        new java.lang.String[] { "Id", "Client", });
+    internal_static_DeleteClientREQ_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_DeleteClientREQ_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_DeleteClientREQ_descriptor,
+        new java.lang.String[] { "Id", });
+    org.devolpex.backend.stubs.shared.Shared.getDescriptor();
+    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

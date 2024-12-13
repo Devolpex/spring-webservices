@@ -1,6 +1,9 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.devolpex.backend.stubs.client";
+import "shared.proto";
+import "google/protobuf/empty.proto"; 
+
 
 // Client Message
 message Client {
@@ -10,3 +13,104 @@ message Client {
     string email = 4;
     string telephone = 5;
 }
+
+// Data Transfer Object for Client
+message ClientPRT {
+    int64 id = 1;
+    string nom = 2;
+    string prenom = 3;
+    string email = 4;
+    string telephone = 5;
+    repeated ReservationPRT reservations = 6;
+}
+
+message ReservationPRT {
+    int64 id = 1;
+    string dateDebut = 2;
+    string dateFin = 3;
+    string preferences = 4;
+    ChambrePRT chambre = 6;
+}
+
+message ChambrePRT {
+    int64 id = 1;
+    string type = 2;
+    float prix = 3;
+    bool disponible = 4;
+}
+
+message ClientRequestPRT {
+    string nom = 1;
+    string prenom = 2;
+    string email = 3;
+    string telephone = 4;
+}
+
+message ClientPagePRT {
+    repeated ClientPRT content = 1; 
+    PageablePRT pageable = 2;           
+    int64 totalElements = 3;         
+    int32 totalPages = 4;            
+    bool last = 5;                  
+    bool first = 6;                  
+    int32 size = 7;                  
+    int32 number = 8;                
+    int32 numberOfElements = 9;      
+    bool empty = 10;                 
+}
+
+// Fetch list of clients
+message FetchListClientsREQ{}
+message FetchListClientsRES{
+    repeated ClientPRT clients = 1;
+}
+// Fetch client by ID
+message FetchClientByIdREQ{
+    int64 id = 1;
+}
+message FetchClientByIdRES{
+    ClientPRT client = 1;
+}
+
+// Fetch page of clients
+message FetchPageClientsREQ{
+    int32 page = 1;
+    int32 size = 2;
+    string orderBy = 3;
+    string sortBy = 4;
+}
+message FetchPageClientsRES{
+    ClientPagePRT data = 1;
+}
+
+// Create client
+message CreateClientREQ{
+    ClientRequestPRT client = 1;
+}
+
+// Update client
+message UpdateClientREQ{
+    int64 id = 1;
+    ClientRequestPRT client = 2;
+}
+
+
+// Delete client
+message DeleteClientREQ{
+    int64 id = 1;
+}
+
+
+// Services
+service ClientService {
+    rpc FetchListClients(FetchListClientsREQ) returns (FetchListClientsRES) {}
+    rpc FetchClientById(FetchClientByIdREQ) returns (FetchClientByIdRES) {}
+    rpc FetchPageClients(FetchPageClientsREQ) returns (FetchPageClientsRES) {}
+
+    rpc CreateClient(CreateClientREQ) returns (ClientPRT) {}
+    rpc UpdateClient(UpdateClientREQ) returns (ClientPRT) {}
+    rpc DeleteClient(DeleteClientREQ) returns (google.protobuf.Empty) {}
+
+}
+
+
