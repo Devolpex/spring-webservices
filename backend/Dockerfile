@@ -1,27 +1,43 @@
-FROM openjdk:21-jdk-slim
+# Stage 1: Build the application
+FROM eclipse-temurin:21-jdk-alpine AS build
+
+# Set the volume for the temporary directory
+VOLUME /tmp
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the Maven executable to the image
+# Copy the Maven project files
 COPY mvnw .
 COPY .mvn .mvn
-
-# Copy the pom.xml and source code
 COPY pom.xml .
-COPY src ./src
+COPY src src
 
-# Give executable permissions to mvnw
-RUN chmod +x mvnw
+# Install the dependencies and build the application
+RUN ./mvnw clean compile install -DskipTests -Pprod
 
-# Build the application
-RUN ./mvnw package -DskipTests
+# Stage 2: Create the final image
+FROM eclipse-temurin:21-jdk-alpine
 
-# Use the correct JAR filename from your target directory
-COPY target/backend-0.0.1.jar app.jar
+# Set the working directory in the container
+WORKDIR /app
 
-# Expose the port the app runs on
-EXPOSE 8080
+# Define build arguments
+ARG SPRING_DATASOURCE_URL
+ARG SPRING_DATASOURCE_PASSWORD
+ARG CORS_ALLOWED_ORIGINS
+# Set environment variables from build arguments
+ENV SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+ENV SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+ENV SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+ENV CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
 
-# Run the jar file
-ENTRYPOINT ["java","-jar","app.jar"]
+# Copy the JAR file from the build stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose the port
+EXPOSE 8082
+EXPOSE 9090
+
+# Run the JAR file
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]

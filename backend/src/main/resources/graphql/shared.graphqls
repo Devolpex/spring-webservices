@@ -1,0 +1,14 @@
+type Pageable {
+    pageNumber: Int
+    pageSize: Int
+    offset: Int
+    paged: Boolean
+    unpaged: Boolean
+    sort: Sort
+}
+
+type Sort {
+    sorted: Boolean
+    unsorted: Boolean
+    empty: Boolean
+}
