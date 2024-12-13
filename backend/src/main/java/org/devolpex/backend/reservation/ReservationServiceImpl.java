@@ -2,6 +2,7 @@ package org.devolpex.backend.reservation;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.devolpex.backend.chambre.Chambre;
 import org.devolpex.backend.chambre.ChambreRepository;
 import org.devolpex.backend.client.Client;
@@ -18,12 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class ReservationServiceImpl implements IService<ReservationDTO, ReservationREQ> {
 
-    private ReservationRepository reservationRepository;
-    private ReservationMapperImpl reservationMapper;
-    private ChambreRepository chambreRepository;
-    private ClientRepository clientRepository;
+    private final ReservationRepository reservationRepository;
+    private final ReservationMapperImpl reservationMapper;
+    private final ChambreRepository chambreRepository;
+    private final ClientRepository clientRepository;
 
     @Override
     public ReservationDTO create(ReservationREQ req) {
