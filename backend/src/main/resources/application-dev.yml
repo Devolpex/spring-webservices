@@ -49,7 +49,7 @@ swagger:
 
 # Spring Boot Actuator & Monitoring
 management:
-  server:localhost:8090/info
+  server:
     port: 8090  # Actuator port
   endpoints:
     web:
