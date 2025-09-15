@@ -2,17 +2,17 @@ spring:
   application:
     name: hotel-backend
   datasource:
-    url: jdbc:mysql://localhost:3311/hotel_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:postgresql://localhost:5432/hotel_db
     username: user
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   graphiql:
     endpoint: /graphql
     enabled: true

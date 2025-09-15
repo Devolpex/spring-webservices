@@ -1,42 +1,20 @@
-version: '3.8'
 
 services:
 
-  mysql-db:
-    image: mysql:8.0
-    container_name: ace_hotel_mysql
+  postgresql:
+    image: postgres:15
+    container_name: spring_webservices_postgres
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: hotel_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      POSTGRES_DB: hotel_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
     ports:
-      - "3311:3306"
+      - "5432:5432"
     volumes:
-      - db_data:/var/lib/mysql
+      - postgresql_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
       - hotel-network
-  # hotel-backend:
-  #   build:
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   # image:
-  #   container_name: ace_hotel_backend
-  #   environment:
-  #     DB_HOST: mysql-db
-  #     DB_PORT: 3306
-  #     DB_NAME: hotel_db
-  #     DB_USER: user
-  #     DB_PASSWORD: password
-  #     CORS_ALLOWED_ORIGINS: http://localhost:5173
-  #     SPRING_PROFILES_ACTIVE: docker # Active Spring profile
-  #   ports:
-  #     - "8082:8082"  # Exposing backend API
-  #     - "9099:9099"  # Exposing gRPC service
-  #   depends_on:
-  #     - mysql-db  # Ensures MySQL starts before the backend
-  #   networks:
-  #     - hotel-network
 
   loki:
     image: grafana/loki:main
@@ -57,7 +35,7 @@ services:
     command: [ '-config.file=/etc/tempo.yaml' ]
     volumes:
       - ./docker/tempo/tempo.yml:/etc/tempo.yaml:ro
-      - ./docker/tempo/tempo-data:/tmp/tempo
+      - tempo_data:/tmp/tempo
     ports:
       - '3110:3100' # Tempo
       - '9411:9411' # zipkin
@@ -71,8 +49,12 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - '3000:3000'
+
 volumes:
-  db_data:
+  postgresql_data:
+    driver: local
+  tempo_data:
+    driver: local
 
 
 networks:
