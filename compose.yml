@@ -15,6 +15,23 @@ services:
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
       - hotel-network
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: devolpex/spring-webservices-backend:latest
+    container_name: spring_webservices_backend
+    env_file:
+      - ./docker/backend/.env
+    ports:
+      - "8080:8080"  # REST API
+      - "9000:9000"  # gRPC
+      - "8090:8090"  # Actuator
+    depends_on:
+      - postgresql
+    networks:
+      - hotel-network
+    restart: on-failure
 
   loki:
     image: grafana/loki:main
