@@ -1,0 +1,21 @@
+type Query {
+  # Client Queries
+  fetchListClients: [Client]
+  fetchClientById(id: ID!): Client
+  fetchPageClients(
+    page: Int
+    size: Int
+    sortBy: String
+    orderBy: String
+  ): [ClientPage]
+
+  # Reservation Queries
+  getReservation(id: ID!): Reservation
+  getReservationsList: [Reservation]
+  getPaginatedReservations(
+    page: Int
+    size: Int
+    sortBy: String
+    orderBy: String
+  ): ReservationPage
+}

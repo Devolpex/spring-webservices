@@ -1,17 +1,3 @@
-type Query {
-  getReservation(id: ID!): Reservation
-  getReservationsList: [Reservation]
-  getPaginatedReservations(page: Int, size: Int, sortBy: String, orderBy: String): ReservationPage
-
-}
-
-type Mutation {
-  createReservation(input: ReservationREQ): Reservation
-  updateReservation(id: ID!, input: ReservationREQ): Reservation
-  deleteReservation(id: ID!): Boolean
-}
-
-
 # Output Schemas
 type Reservation {
   id: ID
@@ -20,14 +6,6 @@ type Reservation {
   dateDebut: String
   dateFin: String
   preferences: String
-}
-
-type Client {
-  id: ID
-  nom: String
-  prenom: String
-  email: String
-  telephone: String
 }
 
 type Chambre {
@@ -68,17 +46,3 @@ type ReservationPage {
   empty: Boolean
 }
 
-type Pageable {
-    pageNumber: Int
-    pageSize: Int
-    offset: Int
-    paged: Boolean
-    unpaged: Boolean
-    sort: Sort
-}
-
-type Sort {
-    sorted: Boolean
-    unsorted: Boolean
-    empty: Boolean
-}
