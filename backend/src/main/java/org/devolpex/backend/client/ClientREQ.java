@@ -6,7 +6,6 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Builder;
-import org.springframework.format.annotation.NumberFormat;
 
 @Builder
 @XmlRootElement

@@ -2,7 +2,8 @@ package org.devolpex.backend.reservation;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import org.devolpex.backend.chambre.Chambre;
 import org.devolpex.backend.chambre.ChambreRepository;
 import org.devolpex.backend.client.Client;

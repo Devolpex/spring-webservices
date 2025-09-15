@@ -16,6 +16,27 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - hotel-network
+  # hotel-backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   # image:
+  #   container_name: ace_hotel_backend
+  #   environment:
+  #     DB_HOST: mysql-db
+  #     DB_PORT: 3306
+  #     DB_NAME: hotel_db
+  #     DB_USER: user
+  #     DB_PASSWORD: password
+  #     CORS_ALLOWED_ORIGINS: http://localhost:5173
+  #     SPRING_PROFILES_ACTIVE: docker # Active Spring profile
+  #   ports:
+  #     - "8082:8082"  # Exposing backend API
+  #     - "9099:9099"  # Exposing gRPC service
+  #   depends_on:
+  #     - mysql-db  # Ensures MySQL starts before the backend
+  #   networks:
+  #     - hotel-network
 
   loki:
     image: grafana/loki:main
