@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven-3.8.7'
+        jdk 'jdk-21.0.7'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Devolpex/spring-webservices.git'
+            }
+        }
+        
+        stage('Build Jar') {
+            steps {
+                dir('backend') {
+                    sh 'mvn clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('backend') {
+                    script {
+                        docker.build('bank-graphql-backend:latest', '-f Dockerfile .')
+                    }
+                }
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                dir('backend') {
+                    // Scan the Docker image for high and critical vulnerabilities
+                    sh '''
+                        echo "Running Trivy scan on bank-graphql-backend:latest"
+                        trivy image --exit-code 0 --severity HIGH,CRITICAL bank-graphql-backend:latest
+                    '''
+                }
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                dir('backend') {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        sh '''
+                            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+                            docker tag bank-graphql-backend:latest marouanedbibih/spring-webservices-backend:latest
+                            docker push marouanedbibih/spring-webservices-backend:latest
+                        '''
+                    }
+                }
+            }
+        }
+    }
+}
