@@ -42,10 +42,66 @@ Thumbs.db
 # VSCode
 .vscode/
 
-# Infrastructure
-infastructure/ansible/.retry
-infastructure/terraform/.terraform/
-infastructure/terraform/terraform.tfstate*
+# Infrastructure - Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.*
+terraform/terraform.tfvars
+terraform/*.tfplan
+terraform/*.tfplan.*
+terraform/.terraform.tfstate.lock.info
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
+terraform/.terraformrc
+terraform/terraform.rc
+
+# Infrastructure - Ansible
+ansible/.retry
+ansible/retry/
+ansible/playbooks/.retry
+ansible/playbooks/retry/
+ansible/inventory.ini
+ansible/inventory.yml.bak
+ansible/group_vars/*/vault.yml
+ansible/group_vars/*/vault.yaml
+ansible/host_vars/*/vault.yml
+ansible/host_vars/*/vault.yaml
+ansible/vault_pass.txt
+ansible/.vault_pass
+ansible/ansible.cfg.local
+ansible/ansible.log
+ansible/logs/
+ansible/tmp/
+ansible/.ansible/
+ansible/collections/
+ansible/requirements.yml.lock
+
+# Infrastructure - Helm
+helm/charts/
+helm/Chart.lock
+helm/values-*.yaml
+helm/values-*.yml
+helm/secrets/
+helm/.helm/
+helm/helm-values-*.yaml
+helm/helm-values-*.yml
+helm/rendered/
+helm/tmp/
+
+# Infrastructure - Kubernetes
+*.kubeconfig
+kubeconfig
+kubeconfig.*
+.kube/
+kube/
+*.kube
+k8s-secrets/
+secrets/
+*.secret
+*.secrets
 
 # Logs
 *.log
@@ -61,6 +117,71 @@ yarn-error.log*
 .idea/
 *.sublime-workspace
 *.sublime-project
+
+# AWS
+.aws/
+aws-credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+aws-config
+.aws-config
+
+# Deployment and CI/CD
+deploy.sh.local
+deploy-*.sh
+deploy-*.yml
+deploy-*.yaml
+ci-cd/
+.github/workflows/secrets/
+.gitlab-ci-local/
+.circleci/local/
+jenkins-local/
+build-*.sh
+deploy-*.sh
+rollback-*.sh
+backup-*.sh
+
+# Environment and Configuration
+.env
+.env.*
+!.env.example
+!.env.template
+config.local.*
+settings.local.*
+local.properties
+local.yml
+local.yaml
+local.json
+local.conf
+local.cfg
+
+# Monitoring and Observability
+prometheus-data/
+grafana-data/
+jaeger-data/
+elastic-data/
+logs/
+monitoring/
+observability/
+metrics/
+traces/
+
+# Backup and Temporary Files
+backup/
+backups/
+*.backup
+*.bak
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+.#*
+#*#
 
 # Others
 *.pid

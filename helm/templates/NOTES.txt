@@ -1,0 +1,47 @@
+Spring Web Services Backend has been deployed!
+
+{{- if contains "NodePort" .Values.service.type }}
+Get the application URLs by running these commands:
+
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  
+  # REST API (HTTP)
+  echo "REST API: http://$NODE_IP:{{ .Values.service.nodePort }}"
+  
+  # gRPC Service
+  echo "gRPC Service: $NODE_IP:{{ .Values.service.grpcNodePort }}"
+  
+  # Spring Boot Actuator (Health checks, metrics)
+  echo "Actuator: http://$NODE_IP:{{ .Values.service.actuatorNodePort }}"
+  
+  # Swagger UI
+  echo "Swagger UI: http://$NODE_IP:{{ .Values.service.nodePort }}/swagger-ui.html"
+  
+  # GraphiQL Playground
+  echo "GraphiQL: http://$NODE_IP:{{ .Values.service.nodePort }}/graphiql"
+
+{{- else if contains "ClusterIP" .Values.service.type }}
+To access the application, use port-forward:
+
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "helm.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  
+  # REST API
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:{{ .Values.service.port }}
+  echo "REST API: http://localhost:8080"
+  
+  # gRPC Service
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 9000:{{ .Values.service.grpcPort }}
+  echo "gRPC Service: localhost:9000"
+  
+  # Actuator
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8090:{{ .Values.service.actuatorPort }}
+  echo "Actuator: http://localhost:8090"
+
+{{- end }}
+
+PostgreSQL Database:
+  Host: {{ include "helm.fullname" . }}-postgresql
+  Port: 5432
+  Database: {{ .Values.postgresql.auth.database }}
+  Username: {{ .Values.postgresql.auth.username }}
+  Password: {{ .Values.postgresql.auth.password }}

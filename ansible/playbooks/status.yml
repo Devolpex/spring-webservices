@@ -1,0 +1,110 @@
+---
+- name: Check Spring Web Services Status on EKS
+  hosts: local
+  gather_facts: false
+  
+  tasks:
+    - name: Check if kubectl is installed
+      command: kubectl version --client
+      register: kubectl_check
+      failed_when: false
+      
+    - name: Fail if kubectl is not installed
+      fail:
+        msg: "kubectl is not installed. Please install kubectl first."
+      when: kubectl_check.rc != 0
+      
+    - name: Update kubeconfig for EKS cluster
+      command: >
+        aws eks update-kubeconfig 
+        --region {{ aws_region }} 
+        --name {{ cluster_name }}
+      register: kubeconfig_update
+      
+    - name: Get Helm releases
+      kubernetes.core.helm:
+        name: "{{ helm_release_name }}"
+        release_namespace: "{{ helm_namespace }}"
+        state: present
+      register: helm_status
+      
+    - name: Get deployment status
+      kubernetes.core.k8s_info:
+        api_version: apps/v1
+        kind: Deployment
+        name: "{{ helm_release_name }}"
+        namespace: "{{ helm_namespace }}"
+      register: deployment_status
+      
+    - name: Get service status
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Service
+        name: "{{ helm_release_name }}"
+        namespace: "{{ helm_namespace }}"
+      register: service_status
+      
+    - name: Get pods status
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Pod
+        namespace: "{{ helm_namespace }}"
+        label_selectors:
+          - "app.kubernetes.io/name={{ helm_release_name }}"
+      register: pods_status
+      
+    - name: Get PostgreSQL pods status
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Pod
+        namespace: "{{ helm_namespace }}"
+        label_selectors:
+          - "app.kubernetes.io/name=postgresql"
+      register: postgresql_pods_status
+      
+    - name: Get node information
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Node
+      register: node_info
+      
+    - name: Display application status
+      debug:
+        msg: |
+          ============================================
+          Spring Web Services Status Report
+          ============================================
+          
+          Cluster: {{ cluster_name }}
+          Namespace: {{ helm_namespace }}
+          Release: {{ helm_release_name }}
+          
+          Application Pods:
+          {% for pod in pods_status.resources %}
+          - Name: {{ pod.metadata.name }}
+            Status: {{ pod.status.phase }}
+            Ready: {{ pod.status.conditions | selectattr('type', 'equalto', 'Ready') | map(attribute='status') | first | default('Unknown') }}
+          {% endfor %}
+          
+          PostgreSQL Pods:
+          {% for pod in postgresql_pods_status.resources %}
+          - Name: {{ pod.metadata.name }}
+            Status: {{ pod.status.phase }}
+            Ready: {{ pod.status.conditions | selectattr('type', 'equalto', 'Ready') | map(attribute='status') | first | default('Unknown') }}
+          {% endfor %}
+          
+          Services:
+          {% for service in service_status.resources %}
+          - Name: {{ service.metadata.name }}
+            Type: {{ service.spec.type }}
+            Ports: {{ service.spec.ports | map(attribute='port') | list }}
+          {% endfor %}
+          
+          Access URLs:
+          - REST API: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.http.node_port }}
+          - Swagger UI: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.http.node_port }}/swagger-ui.html
+          - GraphiQL: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.http.node_port }}/graphiql
+          - Actuator: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.actuator.node_port }}/actuator/health
+          - gRPC Service: {{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.grpc.node_port }}
+          
+          ============================================

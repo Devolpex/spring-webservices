@@ -1,0 +1,53 @@
+---
+- name: Uninstall Spring Web Services from EKS
+  hosts: local
+  gather_facts: false
+  
+  tasks:
+    - name: Check if kubectl is installed
+      command: kubectl version --client
+      register: kubectl_check
+      failed_when: false
+      
+    - name: Fail if kubectl is not installed
+      fail:
+        msg: "kubectl is not installed. Please install kubectl first."
+      when: kubectl_check.rc != 0
+      
+    - name: Check if helm is installed
+      command: helm version
+      register: helm_check
+      failed_when: false
+      
+    - name: Fail if helm is not installed
+      fail:
+        msg: "helm is not installed. Please install helm first."
+      when: helm_check.rc != 0
+      
+    - name: Update kubeconfig for EKS cluster
+      command: >
+        aws eks update-kubeconfig 
+        --region {{ aws_region }} 
+        --name {{ cluster_name }}
+      register: kubeconfig_update
+      
+    - name: Check if Helm release exists
+      kubernetes.core.helm:
+        name: "{{ helm_release_name }}"
+        release_namespace: "{{ helm_namespace }}"
+        state: absent
+        wait: true
+        timeout: 300
+      register: helm_uninstall_result
+      
+    - name: Display uninstall result
+      debug:
+        msg: |
+          Helm release "{{ helm_release_name }}" has been uninstalled from namespace "{{ helm_namespace }}"
+          
+          Note: This will remove:
+          - Spring Web Services application
+          - PostgreSQL database
+          - All associated resources
+          
+          Persistent volumes will be retained unless manually deleted.

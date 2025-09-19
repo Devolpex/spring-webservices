@@ -1,0 +1,47 @@
+# Ansible Configuration
+ansible_python_interpreter: /usr/bin/python3
+
+# AWS Configuration
+aws_region: "{{ aws_region | default('us-west-2') }}"
+cluster_name: "{{ project_name | default('spring-webservices') }}-{{ environment | default('dev') }}-eks"
+
+# Helm Configuration
+helm_namespace: "{{ project_name | default('spring-webservices') }}"
+helm_release_name: "{{ project_name | default('spring-webservices') }}"
+helm_chart_path: "../helm"
+
+# Docker Image Configuration
+docker_image_repository: "{{ docker_registry | default('marouanedbibih') }}/spring-webservices-backend"
+docker_image_tag: "{{ image_tag | default('latest') }}"
+
+# Application Configuration
+app_config:
+  spring_profiles_active: "dev"
+  cors_allowed_origins: "*"
+  
+# Database Configuration
+database_config:
+  name: "backend"
+  username: "postgres"
+  password: "postgres"
+  
+# Resource Configuration
+resource_limits:
+  cpu: "500m"
+  memory: "512Mi"
+  
+resource_requests:
+  cpu: "250m"
+  memory: "256Mi"
+
+# Service Configuration
+service_ports:
+  http:
+    port: 8080
+    node_port: 30080
+  grpc:
+    port: 9000
+    node_port: 30090
+  actuator:
+    port: 8090
+    node_port: 30091
