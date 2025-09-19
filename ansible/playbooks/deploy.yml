@@ -1,0 +1,162 @@
+---
+- name: Deploy Spring Web Services to EKS
+  hosts: local
+  gather_facts: false
+  vars:
+    kubeconfig_path: "~/.kube/config"
+    
+  tasks:
+    - name: Check if kubectl is installed
+      command: kubectl version --client
+      register: kubectl_check
+      failed_when: false
+      
+    - name: Fail if kubectl is not installed
+      fail:
+        msg: "kubectl is not installed. Please install kubectl first."
+      when: kubectl_check.rc != 0
+      
+    - name: Check if helm is installed
+      command: helm version
+      register: helm_check
+      failed_when: false
+      
+    - name: Fail if helm is not installed
+      fail:
+        msg: "helm is not installed. Please install helm first."
+      when: helm_check.rc != 0
+      
+    - name: Update kubeconfig for EKS cluster
+      command: >
+        aws eks update-kubeconfig 
+        --region {{ aws_region }} 
+        --name {{ cluster_name }}
+      register: kubeconfig_update
+      
+    - name: Verify cluster connection
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Node
+      register: cluster_info
+      
+    - name: Display cluster information
+      debug:
+        msg: "Successfully connected to EKS cluster {{ cluster_name }}"
+        
+    - name: Create namespace if it doesn't exist
+      kubernetes.core.k8s:
+        name: "{{ helm_namespace }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+        
+    - name: Add Bitnami Helm repository
+      command: helm repo add bitnami https://charts.bitnami.com/bitnami
+      register: repo_add_result
+      failed_when: false
+      
+    - name: Update Helm repositories
+      command: helm repo update
+      
+    - name: Install/Upgrade Spring Web Services Helm chart
+      kubernetes.core.helm:
+        name: "{{ helm_release_name }}"
+        chart_ref: "{{ helm_chart_path }}"
+        release_namespace: "{{ helm_namespace }}"
+        create_namespace: true
+        values:
+          image:
+            repository: "{{ docker_image_repository }}"
+            tag: "{{ docker_image_tag }}"
+          service:
+            type: NodePort
+            port: "{{ service_ports.http.port }}"
+            nodePort: "{{ service_ports.http.node_port }}"
+            grpcPort: "{{ service_ports.grpc.port }}"
+            grpcNodePort: "{{ service_ports.grpc.node_port }}"
+            actuatorPort: "{{ service_ports.actuator.port }}"
+            actuatorNodePort: "{{ service_ports.actuator.node_port }}"
+          backend:
+            env:
+              SPRING_PROFILES_ACTIVE: "{{ app_config.spring_profiles_active }}"
+              DB_URL: "jdbc:postgresql://{{ helm_release_name }}-postgresql:5432/{{ database_config.name }}"
+              DB_USER: "{{ database_config.username }}"
+              DB_PASSWORD: "{{ database_config.password }}"
+              CORS_ALLOWED_ORIGINS: "{{ app_config.cors_allowed_origins }}"
+            resources:
+              limits:
+                cpu: "{{ resource_limits.cpu }}"
+                memory: "{{ resource_limits.memory }}"
+              requests:
+                cpu: "{{ resource_requests.cpu }}"
+                memory: "{{ resource_requests.memory }}"
+          postgresql:
+            enabled: true
+            auth:
+              postgresPassword: "{{ database_config.password }}"
+              username: "{{ database_config.username }}"
+              password: "{{ database_config.password }}"
+              database: "{{ database_config.name }}"
+            primary:
+              persistence:
+                enabled: true
+                size: 2Gi
+              resources:
+                limits:
+                  cpu: "{{ resource_limits.cpu }}"
+                  memory: "{{ resource_limits.memory }}"
+                requests:
+                  cpu: "{{ resource_requests.cpu }}"
+                  memory: "{{ resource_requests.memory }}"
+        state: present
+        wait: true
+        timeout: 300
+        
+    - name: Wait for deployment to be ready
+      kubernetes.core.k8s_info:
+        api_version: apps/v1
+        kind: Deployment
+        name: "{{ helm_release_name }}"
+        namespace: "{{ helm_namespace }}"
+        wait: true
+        wait_condition:
+          type: Available
+          status: "True"
+        wait_timeout: 600
+        
+    - name: Get service information
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Service
+        name: "{{ helm_release_name }}"
+        namespace: "{{ helm_namespace }}"
+      register: service_info
+      
+    - name: Get node information
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Node
+      register: node_info
+      
+    - name: Display deployment information
+      debug:
+        msg: |
+          Spring Web Services has been successfully deployed!
+          
+          Cluster: {{ cluster_name }}
+          Namespace: {{ helm_namespace }}
+          Release: {{ helm_release_name }}
+          
+          Access URLs:
+          - REST API: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.http.node_port }}
+          - Swagger UI: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.http.node_port }}/swagger-ui.html
+          - GraphiQL: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.http.node_port }}/graphiql
+          - Actuator: http://{{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.actuator.node_port }}/actuator/health
+          - gRPC Service: {{ node_info.resources[0].status.addresses[0].address }}:{{ service_ports.grpc.node_port }}
+          
+          Database:
+          - Host: {{ helm_release_name }}-postgresql
+          - Port: 5432
+          - Database: {{ database_config.name }}
+          - Username: {{ database_config.username }}
+          - Password: {{ database_config.password }}
